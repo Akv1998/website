@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Fetch code from Github') {
+            steps {
+               git 'https://github.com/helpingpeopletolearn/simple-java-maven-app.git'
+            }
+        }
+        
+         stage('Install Apache') {
+            steps {
+                sh 'sudo apt install apache2 -y'
+            }
+        }
+        stage('Deploye Application') {
+            steps {
+               sh 'sudo cp -R * /var/www/html/'
+            }
+        }
+    }
+}
